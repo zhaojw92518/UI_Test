@@ -34,9 +34,48 @@ public class CShowFrame extends JFrame{
 	
 	private CShowNode show_node = null;
 	
+	private void add_leaf_node(CDataNode root_node, LinkedList<CDataNode> node_list){
+		if(root_node.left_node == null && root_node.right_node == null){
+			root_node.left_node = node_list.pollFirst();
+			root_node.right_node = node_list.pollFirst();
+		}
+		else{
+			add_leaf_node(root_node.left_node, node_list);
+			add_leaf_node(root_node.right_node, node_list);
+		}
+	}
+	
+	private void check_tree_node(CDataNode root_node){
+		System.out.println(root_node.title);
+		if(root_node.left_node != null){
+			check_tree_node(root_node.left_node);
+		}
+		if(root_node.right_node != null){
+			check_tree_node(root_node.right_node);
+		}
+	}
+	
 	private void generate_framework(CPaintData in_paint_data){
-		show_node = new CShowNode(in_paint_data.infos, "Title");
-		show_node.setLocation(50, 50);
-		backgroup_panel.add(show_node);
+		CDataNode root_node = null;
+		LinkedList<CDataNode> node_list = new LinkedList<CDataNode>();
+		for(Integer i = 0; i < 15; i++){
+			CDataNode data_node = new CDataNode();
+			data_node.title = i.toString();
+			data_node.add_pair("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "b");
+			for(Integer j = 0; j < 30; j++){
+				data_node.add_pair(j.toString(), j.toString());
+			}
+			data_node.generate_paint_argument();
+			node_list.add(data_node);
+		}
+		root_node = node_list.pollFirst();
+		while(!node_list.isEmpty()){
+			add_leaf_node(root_node, node_list);
+		}
+		check_tree_node(root_node);
+		
+		//show_node = new CShowNode(data_node);
+		//show_node.setLocation(50, 50);
+		//backgroup_panel.add(show_node);
 	}
 }

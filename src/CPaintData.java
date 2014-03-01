@@ -8,4 +8,6 @@ public class CPaintData {
 		String[] temp_array = {in_str_a, in_str_b};
 		infos.add(temp_array);
 	}
+	
+	
 }
