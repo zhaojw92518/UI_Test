@@ -2,6 +2,8 @@ import java.util.LinkedList;
 
 
 public class CDataNode {
+	public static final int INIT_VALUE = -1;
+	
 	//基本数据
 	public String title = null;
 	public LinkedList<String[]> data_pairs = new LinkedList<String[]>();
@@ -15,7 +17,13 @@ public class CDataNode {
 	public int node_width = 0, 
 				node_heigth = CShowNode.node_heigth, 
 				column_a_paint_width = 0, 
-				column_b_paint_width = 0;
+				column_b_paint_width = 0,
+				paint_x = INIT_VALUE,
+				paint_y = INIT_VALUE,
+				line_x1 = INIT_VALUE,
+				line_y1 = INIT_VALUE,
+				line_x2 = INIT_VALUE,
+				line_y2 = INIT_VALUE;
 	
 	//该函数仅作表格部分宽度计算
 	private int get_paint_width(int in_data){
