@@ -1,4 +1,3 @@
-import java.math.MathContext;
 import java.util.LinkedList;
 
 public class CPaintData {
